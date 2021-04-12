@@ -12,11 +12,45 @@
         margin: 0;
         padding: 0;
       }
-      .splash {
+
+      body {
         width: 100vw;
+        min-height: 100vh;
+      }
+      .splash {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
         height: 100vh;
-        background-color: red;
+        background-color: #171717;
         overflow: hidden;
+      }
+
+      .title {
+        font-size: 5rem;
+        color: #fafafa;
+        font-weight: bold;
+      }
+
+      .target {
+        position: absolute;
+      }
+      .target:nth-child(2) {
+        background: url("https://www.flaticon.com/svg/vstatic/svg/3594/3594083.svg?token=exp=1618251656~hmac=d37d6d6a9f371595e06387dd5cd72a57");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 50%;
+        left: 30%;
+      }
+      .target:nth-child(3) {
+        background: url("https://www.flaticon.com/svg/vstatic/svg/3336/3336008.svg?token=exp=1618251658~hmac=0c61e063f3ec747200f8811f4cf1baa5");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 20%;
+        left: 70%;
       }
 
       .slideUp {
@@ -35,38 +69,58 @@
     <title>Mouse Parallax</title>
   </head>
   <body>
-    <div class="splash"></div>
-    <div class="test">Hello World</div>
+    <div class="splash">
+      <h1 class="title target" parallax-speed="0.3">Mouse Parallax</h1>
+      <div class="target" parallax-speed="5"></div>
+      <div class="target" parallax-speed="2"></div>
+    </div>
     <script>
-      const useParallax = (target = "test", offset = 0) => {
+      const addMouseListener = (targetClass) => {
+        document.addEventListener("mousemove", (e) => {
+          parallaxObjects(targetClass, e);
+        });
+      };
+
+      const parallaxObjects = (targetClass, e) => {
+        const objs = [...document.querySelectorAll(`.${targetClass}`)];
+        objs.forEach((elem) => {
+          const vel = Number(elem.getAttribute("parallax-speed"));
+          const x = (window.innerWidth - e.pageX * vel) / 100;
+          const y = (window.innerHeight - e.pageY * vel) / 100;
+
+          elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+      };
+      const useParallax = (targetClass = "", offsetTop = 0) => {
         window.onload = () => {
-          let elements = [...document.getElementsByClassName(target)];
-          elements.forEach((element) => {
-            if (
-              element.getBoundingClientRect().top <
-                window.innerHeight - offset &&
-              element.getBoundingClientRect().bottom
-            ) {
-              element.classList.add("slideUp");
-            }
-          });
-          window.onscroll = (e) => {
-            let elements = [...document.getElementsByClassName(target)];
-            elements.forEach((element) => {
-              if (
-                element.getBoundingClientRect().top <
-                  window.innerHeight - offset &&
-                element.getBoundingClientRect().bottom
-              ) {
-                element.classList.add("slideUp");
-              } else {
-                element.classList.remove("slideUp");
-              }
-            });
-          };
+          addMouseListener(targetClass);
+          // let elements = [...document.getElementsByClassName(targetClass)];
+          // elements.forEach((element) => {
+          //   if (
+          //     element.getBoundingClientRect().top <
+          //       window.innerHeight - offsetTop &&
+          //     element.getBoundingClientRect().bottom
+          //   ) {
+          //     element.classList.add("slideUp");
+          //   }
+          // });
+          // window.onscroll = (e) => {
+          //   let elements = [...document.getElementsByClassName(targetClass)];
+          //   elements.forEach((element) => {
+          //     if (
+          //       element.getBoundingClientRect().top <
+          //         window.innerHeight - offsetTop &&
+          //       element.getBoundingClientRect().bottom
+          //     ) {
+          //       element.classList.add("slideUp");
+          //     } else {
+          //       element.classList.remove("slideUp");
+          //     }
+          //   });
+          // };
         };
       };
-      useParallax();
+      useParallax("target");
     </script>
   </body>
 </html>
