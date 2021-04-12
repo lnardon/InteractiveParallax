@@ -1,7 +1,10 @@
-export const useParallax = (target: string = "", offsetTop: number = 0) => {
+export const useParallax = (
+  targetClass: string = "",
+  offsetTop: number = 0
+) => {
   window.onload = () => {
-    addMouseListener();
-    let elements = [...document.getElementsByClassName(target)];
+    addMouseListener(targetClass);
+    let elements = [...document.getElementsByClassName(targetClass)];
     elements.forEach((element) => {
       if (
         element.getBoundingClientRect().top < window.innerHeight - offsetTop &&
@@ -11,7 +14,7 @@ export const useParallax = (target: string = "", offsetTop: number = 0) => {
       }
     });
     window.onscroll = (e: Event) => {
-      let elements = [...document.getElementsByClassName(target)];
+      let elements = [...document.getElementsByClassName(targetClass)];
       elements.forEach((element) => {
         if (
           element.getBoundingClientRect().top <
@@ -27,14 +30,15 @@ export const useParallax = (target: string = "", offsetTop: number = 0) => {
   };
 };
 
-const addMouseListener = () => {
+const addMouseListener = (targetClass: string) => {
   document.addEventListener("mousemove", (e) => {
     console.log(e);
+    parallaxObjects(targetClass, e);
   });
 };
 
-const parallaxObjects = (className: string, e: MouseEvent) => {
-  const objs = [...document.querySelectorAll(`.${className}`)];
+const parallaxObjects = (targetClass: string, e: MouseEvent) => {
+  const objs = [...document.querySelectorAll(`.${targetClass}`)];
   objs.forEach((elem) => {
     const vel = Number(elem.getAttribute("parallax-speed"));
     const x = window.innerWidth - e.pageX * vel;
