@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .splash {
+        width: 100vw;
+        height: 100vh;
+        background-color: red;
+        overflow: hidden;
+      }
+
+      .slideUp {
+        animation: slideUpAnim 1s ease forwards;
+      }
+
+      @keyframes slideUpAnim {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="splash"></div>
+    <div class="test">Hello World</div>
+    <!-- <script type="module" src="./lib/index.js"></script> -->
+    <script>
+      const useParallax = (target = "test", offset = 0) => {
+        window.onload = () => {
+          let elements = [...document.getElementsByClassName(target)];
+          elements.forEach((element) => {
+            if (
+              element.getBoundingClientRect().top <
+                window.innerHeight - offset &&
+              element.getBoundingClientRect().bottom
+            ) {
+              element.classList.add("slideUp");
+            }
+          });
+          window.onscroll = (e) => {
+            let elements = [...document.getElementsByClassName(target)];
+            elements.forEach((element) => {
+              if (
+                element.getBoundingClientRect().top <
+                  window.innerHeight - offset &&
+                element.getBoundingClientRect().bottom
+              ) {
+                element.classList.add("slideUp");
+              } else {
+                element.classList.remove("slideUp");
+              }
+            });
+          };
+        };
+      };
+      useParallax();
+    </script>
+  </body>
+</html>
