@@ -12,6 +12,9 @@ npm install interactiveparallax
 
 ## Demo
 
+<p align="center" >
+  <img src="./assets/demo.gif" style="height: 300px">
+</p>
 Live demo [here](https://lnardon.github.io/MouseParallax/)
 
 <!-- ## Usage

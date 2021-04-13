@@ -17,6 +17,7 @@
         width: 100vw;
         min-height: 100vh;
       }
+
       .splash {
         display: flex;
         align-items: center;
@@ -36,34 +37,86 @@
       .target {
         position: absolute;
       }
+
       .target:nth-child(2) {
-        background: url("https://www.flaticon.com/svg/vstatic/svg/3594/3594083.svg?token=exp=1618251656~hmac=d37d6d6a9f371595e06387dd5cd72a57");
+        background: url("./assets/1.svg");
         width: 100px;
         height: 100px;
         background-size: cover;
         top: 50%;
-        left: 30%;
+        left: 20%;
       }
+
       .target:nth-child(3) {
-        background: url("https://www.flaticon.com/svg/vstatic/svg/3336/3336008.svg?token=exp=1618251658~hmac=0c61e063f3ec747200f8811f4cf1baa5");
+        background: url("./assets/2.svg");
         width: 100px;
         height: 100px;
         background-size: cover;
         top: 20%;
+        left: 40%;
+      }
+      .target:nth-child(4) {
+        background: url("./assets/3.svg");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 40%;
         left: 70%;
       }
 
-      .slideUp {
-        animation: slideUpAnim 1s ease forwards;
+      .target:nth-child(5) {
+        background: url("./assets/4.svg");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 70%;
+        left: 60%;
+      }
+      .target:nth-child(6) {
+        background: url("./assets/5.svg");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 10%;
+        left: 80%;
+      }
+      .target:nth-child(7) {
+        background: url("./assets/6.svg");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 80%;
+        left: 40%;
+      }
+      .target:nth-child(8) {
+        background: url("./assets/7.svg");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 10%;
+        left: 10%;
+      }
+      .target:nth-child(9) {
+        background: url("./assets/8.svg");
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        top: 80%;
+        left: 85%;
       }
 
-      @keyframes slideUpAnim {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+      #mobileDebugger {
+        position: absolute;
+      }
+
+      #github {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+      }
+
+      #github > img {
+        width: 225px;
       }
     </style>
     <title>Mouse Parallax</title>
@@ -73,7 +126,17 @@
       <h1 class="title target" parallax-speed="0.3">Mouse Parallax</h1>
       <div class="target" parallax-speed="5"></div>
       <div class="target" parallax-speed="2"></div>
+      <div class="target" parallax-speed="4"></div>
+      <div class="target" parallax-speed="2"></div>
+      <div class="target" parallax-speed="3.5"></div>
+      <div class="target" parallax-speed="3"></div>
+      <div class="target" parallax-speed="2"></div>
+      <div class="target" parallax-speed="4"></div>
+      <div class="target" parallax-speed="2"></div>
     </div>
+    <a href="https://github.com/lnardon/MouseFollower" id="github">
+      <img src="./assets/github.png" alt="github" />
+    </a>
     <script>
       const addMouseListener = (targetClass) => {
         document.addEventListener("mousemove", (e) => {
@@ -91,6 +154,7 @@
           elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
         });
       };
+
       const useParallax = (targetClass = "", offsetTop = 0) => {
         window.onload = () => {
           addMouseListener(targetClass);
