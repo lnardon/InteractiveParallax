@@ -2,7 +2,7 @@
 
 A module to create a parallax that interacts with the mouse move.
 
-[![NPM](https://img.shields.io/npm/v/mouseparallax.svg)](https://www.npmjs.com/package/interactiveparallax) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/interactiveparallax.svg)](https://www.npmjs.com/package/interactiveparallax) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Installation
 
@@ -15,7 +15,8 @@ npm install interactiveparallax
 <p align="center" >
   <img src="./assets/demo.gif" style="height: 300px">
 </p>
-Live demo [here](https://lnardon.github.io/InteractiveParallax/)
+
+Live Demo [Here](https://nrdsoftware.lnardon.vercel.app/ "Interactive Parallax Demo")
 
 <!-- ## Usage
 
