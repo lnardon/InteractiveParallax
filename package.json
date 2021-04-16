@@ -1,7 +1,7 @@
 {
-  "name": "mouseparallax",
-  "version": "0.1.0",
-  "description": "NRDBoiler template",
+  "name": "interactiveparallax",
+  "version": "1.0.0",
+  "description": "Interactive parallax package by lnardon",
   "main": "lib/index.js",
   "types": "lib",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/lnardon/NEaDB"
+    "url": "github.com/lnardon/InteractiveParallax"
   },
   "keywords": [],
   "author": "github.com/lnardon",
