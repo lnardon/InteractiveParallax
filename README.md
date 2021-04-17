@@ -16,7 +16,7 @@ npm install interactiveparallax
   <img src="./assets/demo.gif" style="height: 300px">
 </p>
 
-Live Demo [Here](https://nrdsoftware.lnardon.vercel.app/ "Interactive Parallax Demo")
+Live Demo [Here](https://lnardon.github.io/InteractiveParallax/ "Interactive Parallax Demo")
 
 <!-- ## Usage
 
