@@ -4,12 +4,6 @@ A module to create a parallax that interacts with the mouse move.
 
 [![NPM](https://img.shields.io/npm/v/interactiveparallax.svg)](https://www.npmjs.com/package/interactiveparallax) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Installation
-
-```bash
-npm install interactiveparallax
-```
-
 ## Demo
 
 <p align="center" >
@@ -18,18 +12,30 @@ npm install interactiveparallax
 
 Live Demo [Here](https://lnardon.github.io/InteractiveParallax/ "Interactive Parallax Demo")
 
-<!-- ## Usage
+## Installation
+
+```bash
+npm install interactiveparallax
+```
+
+## Usage
 
 ```ts
-import setSequence from "animationsequence";
+import useParallax from "animationsequence";
 
-setSequence(classNameToTrack : string, keyframesName : string, duration: number, delay : number)
+useParallax(containerClass: string, targetClass: string, alertMobileUser?: boolean)
 ```
 
 ## Example
 
 ```js
-import setSequence from "animationsequence";
+import useParallax from "animationsequence";
 
-setSequence("userCard", "slideUp", 1000, 500);
-``` -->
+useParallax("parallaxContainer", "planetImage", true);
+```
+
+The function accepts 3 arguments:
+
+- The class name of the container where the parallax will happen
+- The class name of the targets to apply the effect
+- A optional argument to inform in case the device has no support for the package.
