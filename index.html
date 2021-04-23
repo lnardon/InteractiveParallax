@@ -7,6 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
+    <link rel="shortcut icon" href="./assets/2.svg" type="image/x-icon" />
     <style>
       * {
         margin: 0;
@@ -16,6 +17,7 @@
       body {
         width: 100vw;
         min-height: 100vh;
+        overflow: hidden;
       }
 
       .splash {
@@ -32,6 +34,9 @@
         font-size: 5rem;
         color: #fafafa;
         font-weight: bold;
+        text-align: center;
+        z-index: 1000;
+        text-shadow: 13px 9px 21px rgba(0, 0, 0, 0.25);
       }
 
       .target {
@@ -138,53 +143,31 @@
       <img src="./assets/github.png" alt="github" />
     </a>
     <script>
-      const addMouseListener = (targetClass) => {
-        document.addEventListener("mousemove", (e) => {
-          parallaxObjects(targetClass, e);
-        });
-      };
-
-      const parallaxObjects = (targetClass, e) => {
-        const objs = [...document.querySelectorAll(`.${targetClass}`)];
-        objs.forEach((elem) => {
-          const vel = Number(elem.getAttribute("parallax-speed"));
-          const x = (window.innerWidth - e.pageX * vel) / 100;
-          const y = (window.innerHeight - e.pageY * vel) / 100;
-
-          elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
-        });
-      };
-
-      const useParallax = (targetClass = "", offsetTop = 0) => {
+      const useParallax = (containerClass, targetClass = "") => {
         window.onload = () => {
-          addMouseListener(targetClass);
-          // let elements = [...document.getElementsByClassName(targetClass)];
-          // elements.forEach((element) => {
-          //   if (
-          //     element.getBoundingClientRect().top <
-          //       window.innerHeight - offsetTop &&
-          //     element.getBoundingClientRect().bottom
-          //   ) {
-          //     element.classList.add("slideUp");
-          //   }
-          // });
-          // window.onscroll = (e) => {
-          //   let elements = [...document.getElementsByClassName(targetClass)];
-          //   elements.forEach((element) => {
-          //     if (
-          //       element.getBoundingClientRect().top <
-          //         window.innerHeight - offsetTop &&
-          //       element.getBoundingClientRect().bottom
-          //     ) {
-          //       element.classList.add("slideUp");
-          //     } else {
-          //       element.classList.remove("slideUp");
-          //     }
-          //   });
-          // };
+          // Containber Ref
+          const container = document.getElementsByClassName(containerClass)[0];
+          // Mousemove function
+          const moveFunction = (e) => {
+            const objs = [...document.getElementsByClassName(targetClass)];
+            objs.forEach((elem) => {
+              const vel = Number(elem.getAttribute("parallax-speed"));
+              const x = (container.style.width - e.pageX * vel) / 100;
+              const y = (container.style.height - e.pageY * vel) / 100;
+              elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+          };
+          // Add MouseEnter event
+          container.addEventListener("mouseenter", () => {
+            container.addEventListener("mousemove", moveFunction);
+          });
+          // Add MouseLeave event
+          container.addEventListener("mouseleave", () => {
+            container.removeEventListener("mousemove", moveFunction);
+          });
         };
       };
-      useParallax("target");
+      useParallax("splash", "target");
     </script>
   </body>
 </html>
