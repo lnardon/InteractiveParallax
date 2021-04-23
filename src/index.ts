@@ -1,6 +1,6 @@
 export const useParallax = (
   containerClass: string,
-  targetClass: string = "",
+  targetClass: string,
   alertMobileUser: boolean = false
 ) => {
   window.onload = () => {
