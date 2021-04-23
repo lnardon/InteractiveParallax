@@ -143,31 +143,39 @@
       <img src="./assets/github.png" alt="github" />
     </a>
     <script>
-      const useParallax = (containerClass, targetClass = "") => {
-        window.onload = () => {
-          // Containber Ref
-          const container = document.getElementsByClassName(containerClass)[0];
-          // Mousemove function
-          const moveFunction = (e) => {
-            const objs = [...document.getElementsByClassName(targetClass)];
-            objs.forEach((elem) => {
-              const vel = Number(elem.getAttribute("parallax-speed"));
-              const x = (container.style.width - e.pageX * vel) / 100;
-              const y = (container.style.height - e.pageY * vel) / 100;
-              elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
-            });
-          };
-          // Add MouseEnter event
-          container.addEventListener("mouseenter", () => {
+      const useParallax = (
+        containerClass,
+        targetClass = "",
+        alertMobileUser = false
+      ) => {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (!isMobile) {
+          window.onload = () => {
+            // Containber Ref
+            const container = document.getElementsByClassName(
+              containerClass
+            )[0];
+            // Mousemove function
+            const moveFunction = (e) => {
+              const objs = [...document.getElementsByClassName(targetClass)];
+              objs.forEach((elem) => {
+                const vel = Number(elem.getAttribute("parallax-speed"));
+                const x = (container.style.width - e.pageX * vel) / 100;
+                const y = (container.style.height - e.pageY * vel) / 100;
+                elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
+              });
+            };
             container.addEventListener("mousemove", moveFunction);
-          });
-          // Add MouseLeave event
-          container.addEventListener("mouseleave", () => {
-            container.removeEventListener("mousemove", moveFunction);
-          });
-        };
+          };
+        } else {
+          alertMobileUser
+            ? alert("Parallax Effect is not supported on mobile devices.")
+            : console.log(
+                "Parallax Effect is not supported on mobile devices."
+              );
+        }
       };
-      useParallax("splash", "target");
+      useParallax("splash", "target", true);
     </script>
   </body>
 </html>
