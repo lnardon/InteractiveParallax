@@ -13,9 +13,10 @@ export const useParallax = (
       const moveFunction = (e: MouseEvent) => {
         const objs: any = [...document.getElementsByClassName(targetClass)];
         objs.forEach((elem: HTMLElement) => {
-          const vel = Number(elem.getAttribute("parallax-speed"));
-          const x = (container.style.width - e.pageX * vel) / 100;
-          const y = (container.style.height - e.pageY * vel) / 100;
+          const velX = Number(elem.getAttribute("parallax-speed-x"));
+          const velY = Number(elem.getAttribute("parallax-speed-y"));
+          const x = (container.style.width - e.pageX * velX) / 100;
+          const y = (container.style.height - e.pageY * velY) / 100;
 
           elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
         });

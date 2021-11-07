@@ -129,15 +129,15 @@
   <body>
     <div class="splash">
       <h1 class="title target" parallax-speed="0.3">Interactive Parallax</h1>
-      <div class="target" parallax-speed="5"></div>
-      <div class="target" parallax-speed="2"></div>
-      <div class="target" parallax-speed="4"></div>
-      <div class="target" parallax-speed="2"></div>
-      <div class="target" parallax-speed="3.5"></div>
-      <div class="target" parallax-speed="3"></div>
-      <div class="target" parallax-speed="2"></div>
-      <div class="target" parallax-speed="4"></div>
-      <div class="target" parallax-speed="2"></div>
+      <div class="target" parallax-speed-x="5" parallax-speed-y="5"></div>
+      <div class="target" parallax-speed-x="2" parallax-speed-y="5"></div>
+      <div class="target" parallax-speed-x="40" parallax-speed-y="50"></div>
+      <div class="target" parallax-speed-x="2" parallax-speed-y="5"></div>
+      <div class="target" parallax-speed-x="3.5" parallax-speed-y="5"></div>
+      <div class="target" parallax-speed-x="30" parallax-speed-y="5"></div>
+      <div class="target" parallax-speed-x="2" parallax-speed-y="5"></div>
+      <div class="target" parallax-speed-x="40" parallax-speed-y="5"></div>
+      <div class="target" parallax-speed-x="2" parallax-speed-y="50"></div>
     </div>
     <a href="https://github.com/lnardon/InteractiveParallax" id="github">
       <img src="./assets/github.png" alt="github" />
@@ -145,35 +145,37 @@
     <script>
       const useParallax = (
         containerClass,
-        targetClass = "",
+        targetClass,
         alertMobileUser = false
       ) => {
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        if (!isMobile) {
-          window.onload = () => {
+        window.onload = () => {
+          const isMobile = /iPhone|iPad|iPod|Android/i.test(
+            navigator.userAgent
+          );
+          if (!isMobile) {
             // Containber Ref
-            const container = document.getElementsByClassName(
-              containerClass
-            )[0];
+            const container =
+              document.getElementsByClassName(containerClass)[0];
             // Mousemove function
             const moveFunction = (e) => {
               const objs = [...document.getElementsByClassName(targetClass)];
               objs.forEach((elem) => {
-                const vel = Number(elem.getAttribute("parallax-speed"));
-                const x = (container.style.width - e.pageX * vel) / 100;
-                const y = (container.style.height - e.pageY * vel) / 100;
+                const velX = Number(elem.getAttribute("parallax-speed-x"));
+                const velY = Number(elem.getAttribute("parallax-speed-y"));
+                const x = (container.style.width - e.pageX * velX) / 100;
+                const y = (container.style.height - e.pageY * velY) / 100;
                 elem.style.transform = `translateX(${x}px) translateY(${y}px)`;
               });
             };
             container.addEventListener("mousemove", moveFunction);
-          };
-        } else {
-          alertMobileUser
-            ? alert("Parallax Effect is not supported on mobile devices.")
-            : console.log(
-                "Parallax Effect is not supported on mobile devices."
-              );
-        }
+          } else {
+            alertMobileUser
+              ? alert("Parallax Effect is not supported on mobile devices.")
+              : console.log(
+                  "Parallax Effect is not supported on mobile devices."
+                );
+          }
+        };
       };
       useParallax("splash", "target", true);
     </script>
