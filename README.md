@@ -35,10 +35,10 @@ useParallax(containerClass: string, targetClass: string, alertMobileUser?: boole
 
 ```html
 <!-- 
-  parallax-speed-x = X-axis parallax speed for the target. (Number between 1 and 50)
-  parallax-speed-y = Y-axis parallax speed for the target. (Number between 1 and 50)
+  parallax-speed-x = X-axis parallax speed for the target. (Number between -50 and 50)
+  parallax-speed-y = Y-axis parallax speed for the target. (Number between -50 and 50)
 -->
-<div class="target" parallax-speed-x="7" parallax-speed-y="11"></div>
+<div class="target" parallax-speed-x="-7" parallax-speed-y="11"></div>
 ```
 
 ## Example
@@ -47,8 +47,8 @@ useParallax(containerClass: string, targetClass: string, alertMobileUser?: boole
 <!-- HTML -->
 <div class="splash">
   <h1 class="title target" parallax-speed="0.3">Interactive Parallax</h1>
-  <div class="target" parallax-speed-x="13" parallax-speed-y="19"></div>
-  <div class="target" parallax-speed-x="21" parallax-speed-y="14"></div>
+  <div class="target" parallax-speed-x="13" parallax-speed-y="-19"></div>
+  <div class="target" parallax-speed-x="-21" parallax-speed-y="14"></div>
 </div>
 ```
 
